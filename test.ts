@@ -6,4 +6,4 @@ function test() {
     const e = 5;
 }
 
-console.log("hiii")
+console.log("this is funciton")
