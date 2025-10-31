@@ -1,0 +1,1 @@
+export { getIpAddress, getLatLon, getAddress } from "./location";
