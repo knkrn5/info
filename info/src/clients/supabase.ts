@@ -55,7 +55,9 @@ fetchUserInfo()
 
 // Export function to call Edge Function (instead of top-level call)
 export async function callNodeApi(name: string) {
-    const { data, error } = await supabase.functions.invoke('node-api', {
+    // const apiName = "node-api";
+    const apiName = "get-ipaddress";
+    const { data, error } = await supabase.functions.invoke(apiName, {
         body: { name },
     });
 
