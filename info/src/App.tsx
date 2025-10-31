@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 import { getIpAddress, getLatLon, getAddress } from "./utils";
+import { saveUserInfo } from "./clients/supabase";
+
+import { userInfoSchema } from "./types";
 
 interface LocationData {
   ip: string;
@@ -47,12 +50,30 @@ function App() {
         console.log(ipAddress);
 
         const data = await getLatLon(ipAddress);
+
         console.log(data);
         setLocationData(data);
 
         const addressResult = await getAddress(data.latitude, data.longitude);
         console.log(addressResult);
         setAddress(addressResult);
+
+        const userInfo = {
+          ipaddress: ipAddress,
+          coordinates: [data.latitude, data.longitude] as [number, number],
+          country: data.country_name,
+          capital: data.country_capital,
+          state: data.region,
+        };
+
+        const parsed = userInfoSchema.safeParse(userInfo);
+
+        if (!parsed.success) {
+          console.error("Failed to validate user info payload", parsed.error);
+          return;
+        }
+
+        await saveUserInfo(parsed.data);
       } catch (err) {
         setError("Failed to fetch location data");
         console.error(err);
@@ -135,7 +156,9 @@ function App() {
             </div>
             <div className="info-item">
               <span className="label">Region:</span>
-              <span className="value">{locationData?.region} ({locationData?.region_code})</span>
+              <span className="value">
+                {locationData?.region} ({locationData?.region_code})
+              </span>
             </div>
             <div className="info-item">
               <span className="label">Postal Code:</span>
@@ -160,7 +183,9 @@ function App() {
             </div>
             <div className="info-item">
               <span className="label">Country Code:</span>
-              <span className="value">{locationData?.country_code} / {locationData?.country_code_iso3}</span>
+              <span className="value">
+                {locationData?.country_code} / {locationData?.country_code_iso3}
+              </span>
             </div>
             <div className="info-item">
               <span className="label">Capital:</span>
@@ -176,7 +201,9 @@ function App() {
             </div>
             <div className="info-item">
               <span className="label">In EU:</span>
-              <span className="value">{locationData?.in_eu ? "Yes" : "No"}</span>
+              <span className="value">
+                {locationData?.in_eu ? "Yes" : "No"}
+              </span>
             </div>
           </div>
         </div>
@@ -195,11 +222,15 @@ function App() {
             </div>
             <div className="info-item">
               <span className="label">Calling Code:</span>
-              <span className="value">{locationData?.country_calling_code}</span>
+              <span className="value">
+                {locationData?.country_calling_code}
+              </span>
             </div>
             <div className="info-item">
               <span className="label">Currency:</span>
-              <span className="value">{locationData?.currency_name} ({locationData?.currency})</span>
+              <span className="value">
+                {locationData?.currency_name} ({locationData?.currency})
+              </span>
             </div>
           </div>
         </div>
@@ -210,11 +241,15 @@ function App() {
           <div className="info-group">
             <div className="info-item">
               <span className="label">Population:</span>
-              <span className="value">{locationData?.country_population.toLocaleString()}</span>
+              <span className="value">
+                {locationData?.country_population.toLocaleString()}
+              </span>
             </div>
             <div className="info-item">
               <span className="label">Area:</span>
-              <span className="value">{locationData?.country_area.toLocaleString()} km²</span>
+              <span className="value">
+                {locationData?.country_area.toLocaleString()} km²
+              </span>
             </div>
             <div className="info-item full-width">
               <span className="label">Languages:</span>
@@ -222,6 +257,16 @@ function App() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Disclaimer Note */}
+      <div className="disclaimer">
+        <p>
+          ⚠️ <strong>Note:</strong> This address may not be accurate. IP
+          geolocation is approximate and based on available data from the ISP.
+          Actual location may vary. For precise location information, use GPS or
+          other location services.
+        </p>
       </div>
     </div>
   );

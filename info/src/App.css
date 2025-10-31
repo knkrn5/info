@@ -202,3 +202,32 @@
   }
 }
 
+/* Disclaimer */
+.disclaimer {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 8px;
+  border-left: 4px solid #ffc107;
+  text-align: center;
+}
+
+.disclaimer p {
+  color: #e2e8f0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .disclaimer {
+    background: rgba(255, 193, 7, 0.08);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+  }
+
+  .disclaimer p {
+    color: #854d0e;
+  }
+}
+
