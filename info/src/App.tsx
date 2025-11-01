@@ -8,6 +8,8 @@ import { userInfoSchema } from "./types";
 import type { locationData } from "./types";
 import { UserinfoPage } from "./pages/userInfo/userinfoPage";
 import { Header } from "./components/header";
+import Homepage from "./pages/homepage";
+
 
 function App() {
   const [locationData, setLocationData] = useState<locationData | undefined>(
@@ -76,7 +78,7 @@ function App() {
       <div className="container">
         <div className="loading">
           <div className="spinner"></div>
-          <p>Fetching your location...</p>
+          <p>Fetching data...</p>
         </div>
       </div>
     );
@@ -100,7 +102,7 @@ function App() {
         <Route
           path="/"
           element={
-            <UserinfoPage locationData={locationData} address={address} />
+            <Homepage />
           }
         />
         <Route

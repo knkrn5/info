@@ -43,23 +43,13 @@ export const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" onClick={closeMenu}>
-                About
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/services" onClick={closeMenu}>
-                Services
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/contact" onClick={closeMenu}>
-                Contact
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link to="/profile" onClick={closeMenu}>
                 Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/data" onClick={closeMenu}>
+                Data
               </Link>
             </li>
           </ul>
