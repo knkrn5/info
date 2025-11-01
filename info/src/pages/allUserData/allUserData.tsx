@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchUserInfo } from "../../utils";
 import type { locationData } from "../../types";
 import "./allUserData.css";
