@@ -44,8 +44,6 @@ export async function fetchUserInfo() {
     return parsedData.data;
 }
 
-fetchUserInfo()
-
 
 // Export function to call Edge Function (instead of top-level call)
 export async function callNodeApi() {

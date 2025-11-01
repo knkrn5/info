@@ -1,4 +1,3 @@
-import React from "react";
 import "./userinfoPage.css";
 
 import type { locationData } from "../../types";

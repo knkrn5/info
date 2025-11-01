@@ -11,7 +11,7 @@ interface Prize {
 
 const prizes: Prize[] = [
   { id: 1, emoji: "🎁", label: "Gift Box", color: "#FF6B6B", chance: 18 },
-  { id: 2, emoji: "�️", label: "VIP Ticket", color: "#4ECDC4", chance: 15 },
+  { id: 2, emoji: "🎟   ️", label: "VIP Ticket", color: "#4ECDC4", chance: 15 },
   { id: 3, emoji: "🛍️", label: "Shopping", color: "#45B7D1", chance: 14 },
   { id: 4, emoji: "💎", label: "Diamond", color: "#FFA07A", chance: 12 },
   { id: 5, emoji: "🏆", label: "Trophy", color: "#98D8C8", chance: 10 },

@@ -9,7 +9,7 @@ import type { locationData } from "./types";
 import { UserinfoPage } from "./pages/userInfo/userinfoPage";
 import { Header } from "./components/header";
 import Homepage from "./pages/homepage";
-
+import { AllUserData } from "./pages/allUserData/allUserData";
 
 function App() {
   const [locationData, setLocationData] = useState<locationData | undefined>(
@@ -99,16 +99,17 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Homepage />
-          }
-        />
+        <Route path="/" element={<Homepage />} />
         <Route
           path="/profile"
           element={
             <UserinfoPage locationData={locationData} address={address} />
+          }
+        />
+        <Route
+          path="/data"
+          element={
+            <AllUserData  />
           }
         />
       </Routes>
