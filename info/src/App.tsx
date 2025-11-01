@@ -6,6 +6,8 @@ import { saveUserInfo } from "./clients/supabase";
 
 import { userInfoSchema } from "./types";
 import { UserinfoPage } from "./pages/userInfo/userinfoPage";
+import { Header } from "./components/header";
+
 
 export interface LocationData {
   ip: string;
@@ -108,7 +110,12 @@ function App() {
     );
   }
 
-  return <UserinfoPage locationData={locationData} address={address} />;
+  return (
+    <>
+      <Header />
+      <UserinfoPage locationData={locationData} address={address} />
+    </>
+  );
 }
 
 export default App;
