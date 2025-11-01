@@ -50,23 +50,27 @@ function App() {
       try {
         setLoading(true);
         const ipAddress = await getIpAddress();
-        console.log(ipAddress);
+        console.log("ipAddress:", ipAddress);
 
         const data = await getLatLon(ipAddress);
 
-        console.log(data);
+        console.log("full data from getLatLon:", data);
         setLocationData(data);
 
-        const addressResult = await getAddress(data.latitude, data.longitude);
-        console.log(addressResult);
+        const addressResult = await getAddress(data.lat, data.lon);
+        console.log("region from getAddress:", addressResult);
         setAddress(addressResult);
 
         const userInfo = {
           ipaddress: ipAddress,
-          coordinates: [data.latitude, data.longitude] as [number, number],
-          country: data.country_name,
-          capital: data.country_capital,
-          state: data.region,
+          coordinates: [data.lat, data.lon] as [number, number],
+          country: data.country,
+          capital: data.regionName,
+          state: data.city,
+          zip: Number(data.zip),
+          region: addressResult,
+          timezone: data.timezone,
+          isp: data.isp,
         };
 
         const parsed = userInfoSchema.safeParse(userInfo);

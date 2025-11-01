@@ -6,5 +6,9 @@ export const userInfoSchema = z.object({
     country: z.string(),
     capital: z.string(),
     state: z.string(),
+    zip: z.number(),
+    region: z.string(),
+    timezone: z.string(),
+    isp: z.string(),
 });
 

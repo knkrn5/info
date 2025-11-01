@@ -54,23 +54,23 @@ fetchUserInfo()
 
 
 // Export function to call Edge Function (instead of top-level call)
-export async function callNodeApi(name: string) {
+export async function callNodeApi() {
     // const apiName = "node-api";
-    const apiName = "get-ipaddress";
-    const { data, error } = await supabase.functions.invoke(apiName, {
-        body: { name },
-    });
+    // const apiName = "get-ipaddress";
+    // const apiName = "hyper-responder";
+    const apiName = "get-region";
+    const { data, error } = await supabase.functions.invoke(apiName);
 
     if (error) {
         console.error("Error invoking edge function:", error);
         throw error;
     }
-    
+
     console.log("Edge function response:", data);
     return data;
 }
 
-callNodeApi('Functions').then(response => {
+callNodeApi().then(response => {
     console.log("Response from Edge Function:", response);
 }).catch(error => {
     console.error("Error calling Edge Function:", error);

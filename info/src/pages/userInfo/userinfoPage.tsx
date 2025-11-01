@@ -10,7 +10,7 @@ export function UserinfoPage({locationData, address}) {
 
       {/* Address Card */}
       <div className="card address-card">
-        <h2>📍 Address Nearby</h2>
+        <h2>{address ? "📍 Address Nearby" : "No address found"}</h2>
         <p className="address-text">{address}</p>
       </div>
 
