@@ -14,22 +14,23 @@
 }
 
 /* Address Card */
-.address-card {
+.details-card {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   margin-bottom: 2rem;
   text-align: center;
 }
 
-.address-card h2 {
+.details-card h2 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 
 .address-text {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
 /* Grid Layout */
@@ -84,6 +85,14 @@
   padding: 0.5rem;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.02);
+}
+
+.info-group.single {
+  margin-top: 1.5rem;
+}
+
+.details-card .info-item {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .info-item.full-width {

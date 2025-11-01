@@ -10,7 +10,7 @@ import { UserinfoPage } from "./pages/userInfo/userinfoPage";
 import { Header } from "./components/header";
 
 function App() {
-  const [locationData, setLocationData] = useState<locationData | null>(null);
+  const [locationData, setLocationData] = useState<locationData | undefined>(undefined);
   const [address, setAddress] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -25,7 +25,6 @@ function App() {
         const data = await getLatLon(ipAddress);
 
         console.log("full data from getLatLon:", data);
-        setLocationData(data);
 
         const addressResult = await getAddress(data.lat, data.lon);
         console.log("region from getAddress:", addressResult);
@@ -46,6 +45,8 @@ function App() {
         const parsed = userInfoSchema.safeParse(userInfo);
 
         console.log("parsed", parsed)
+
+        setLocationData(parsed.data);
 
         if (!parsed.success) {
           console.error("Failed to validate user info payload", parsed.error);
