@@ -40,7 +40,7 @@ export async function fetchUserInfo() {
         throw new Error("Invalid data format");
     }
 
-    console.log("Parsed data:", parsedData.data);
+    // console.log("Parsed data:", parsedData.data);
     return parsedData.data;
 }
 
@@ -58,6 +58,6 @@ export async function getAccessPass() {
         throw error;
     }
 
-    console.log("Edge function response:", data);
+    // console.log("Edge function response:", data);
     return data;
 }

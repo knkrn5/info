@@ -18,7 +18,7 @@ export function AllUserData() {
 
         setLoading(true);
         const data = await fetchUserInfo();
-        console.log("Fetched user info data:", data);
+        // console.log("Fetched user info data:", data);
         setUserData(data);
         setError(null);
       } catch (err) {
