@@ -74,7 +74,7 @@ function App() {
       <div className="container">
         <div className="loading">
           <div className="spinner"></div>
-          <p>Fetching data...</p>
+          {/* <p>Fetching data...</p> */}
         </div>
       </div>
     );

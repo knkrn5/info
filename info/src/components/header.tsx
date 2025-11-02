@@ -19,7 +19,7 @@ export const Header = () => {
         {/* Logo */}
         <div className="logo">
           <Link to="/" onClick={closeMenu}>
-            <span className="logo-text">LocationInfo</span>
+            <span className="logo-text">Lottery</span>
           </Link>
         </div>
 
