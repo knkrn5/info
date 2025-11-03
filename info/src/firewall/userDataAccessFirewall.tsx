@@ -15,14 +15,14 @@ export default function UserDataAccessFirewall({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const hasAccess = await getAccessPass();
+    const hasAccess = await getAccessPass(password);
 
-    if (password.trim() === hasAccess.dataAccessPass) {
-    //   console.log("Password match ✅");
+    if (hasAccess.authenticated) {
+      //   console.log("Password match ✅");
       sethasUserDataAccess(true);
       setErrorMessage("");
     } else {
-    //   console.log("Password incorrect ❌");
+      //   console.log("Password incorrect ❌");
       sethasUserDataAccess(false);
       setErrorMessage("❌ Incorrect password. Please try again.");
       setIsShaking(true);
