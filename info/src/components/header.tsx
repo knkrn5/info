@@ -19,9 +19,9 @@ export const Header = () => {
   useEffect(() => {
     // setPopupMsg("Welcome to the Lottery App!");
 
-    if (popupMsg) {
+    if (popupMsg.msg) {
       setTimeout(() => {
-        setPopupMsg("");
+        setPopupMsg({ status: null, msg: null });
       }, 3000);
     }
   }, [popupMsg, setPopupMsg]);
@@ -69,9 +69,9 @@ export const Header = () => {
         </nav>
       </div>
 
-      {popupMsg && (
+      {popupMsg.msg && (
         <div className="popup-message">
-          <span>{popupMsg}</span>
+          <span>{popupMsg.msg}</span>
         </div>
       )}
     </header>

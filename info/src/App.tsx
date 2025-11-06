@@ -61,9 +61,9 @@ function App() {
         }
 
         await saveUserInfo(parsed.data);
-        setPopupMsg("User information saved successfully!");
+        setPopupMsg({ status: "success", msg: "User info saved successfully" });
       } catch (err) {
-        setPopupMsg("Failed to fetching data");
+        setPopupMsg({ status: "error", msg: "Failed to fetching data" });
         console.error("failed to fetch data", err);
       } finally {
         setLoading(false);
