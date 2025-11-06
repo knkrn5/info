@@ -70,7 +70,13 @@ export const Header = () => {
       </div>
 
       {popupMsg.msg && (
-        <div className="popup-message">
+        <div
+          className={
+            popupMsg.status === "success"
+              ? "popup-message-success"
+              : "popup-message-error"
+          }
+        >
           <span>{popupMsg.msg}</span>
         </div>
       )}
