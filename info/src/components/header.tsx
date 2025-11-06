@@ -1,18 +1,12 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import "./header.css";
-import { PopupContext } from "../contexts/popupContext";
-
-
+import { usePopup } from "../contexts/popupContext";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const popupContext = useContext(PopupContext);
-
-  const { popupMsg, setPopupMsg } = popupContext;
-
-  setPopupMsg("Welcome to the Lottery App!");
+  const { popupMsg, setPopupMsg } = usePopup();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,6 +15,16 @@ export const Header = () => {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    // setPopupMsg("Welcome to the Lottery App!");
+
+    if (popupMsg) {
+      setTimeout(() => {
+        setPopupMsg("");
+      }, 3000);
+    }
+  }, [popupMsg, setPopupMsg]);
 
   return (
     <header className="header">

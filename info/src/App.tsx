@@ -10,7 +10,8 @@ import { UserinfoPage } from "./pages/userInfo/userinfoPage";
 import { Header } from "./components/header";
 import Homepage from "./pages/homepage";
 import { AllUserData } from "./pages/allUserData/allUserData";
-import { PopupProvider } from "./contexts/popupContext";
+import { usePopup } from "./contexts/popupContext";
+
 
 function App() {
   const [locationData, setLocationData] = useState<locationData | undefined>(
@@ -18,7 +19,8 @@ function App() {
   );
   const [address, setAddress] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+
+  const { setPopupMsg } = usePopup();
 
   useEffect(() => {
     const getLocation = async () => {
@@ -59,16 +61,17 @@ function App() {
         }
 
         await saveUserInfo(parsed.data);
+        setPopupMsg("User information saved successfully!");
       } catch (err) {
-        setError("Failed to fetching data");
-        console.error(err);
+        setPopupMsg("Failed to fetching data");
+        console.error("failed to fetch data", err);
       } finally {
         setLoading(false);
       }
     };
 
     getLocation();
-  }, []);
+  }, [setPopupMsg]);
 
   if (loading) {
     return (
@@ -81,19 +84,9 @@ function App() {
     );
   }
 
-  if (error) {
-    return (
-      <div className="container">
-        <div className="error-card">
-          <h2>❌ Error</h2>
-          <p>{error}</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <PopupProvider>
+    <>
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -103,14 +96,9 @@ function App() {
             <UserinfoPage locationData={locationData} address={address} />
           }
         />
-        <Route
-          path="/data"
-          element={
-            <AllUserData  />
-          }
-        />
+        <Route path="/data" element={<AllUserData />} />
       </Routes>
-    </PopupProvider>
+    </>
   );
 }
 
