@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router";
 import "./App.css";
 
-import { getIpAddress, getLatLon, getAddress, saveUserInfo } from "./utils";
+
+import { getLatLon, getAddress, saveUserInfo, getAccessPass } from "./utils";
 
 import { userInfoSchema } from "./types";
 import type { locationData } from "./types";
@@ -26,7 +27,8 @@ function App() {
     const getLocation = async () => {
       try {
         setLoading(true);
-        const ipAddress = await getIpAddress();
+        
+        const ipAddress = await getAccessPass("ip").then(res => res.ip);
         // console.log("ipAddress:", ipAddress);
 
         const data = await getLatLon(ipAddress);
@@ -71,6 +73,16 @@ function App() {
     };
 
     getLocation();
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log("User's current position:", position);
+      },
+      (error) => {
+        console.error("Error getting user's location:", error);
+      }
+    );
+
   }, [setPopupMsg]);
 
   if (loading) {

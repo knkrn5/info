@@ -1,5 +1,5 @@
 
-export function getIpAddress(): Promise<string> {
+/* export function getIpAddress(): Promise<string> {
     return fetch("https://api.ipify.org?format=json")
         .then((response) => response.json())
         .then((data) => {
@@ -10,7 +10,7 @@ export function getIpAddress(): Promise<string> {
             // console.error("Error fetching IP address:", error);
             throw error;
         });
-}
+} */
 
 
 
