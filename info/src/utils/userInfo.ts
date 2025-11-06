@@ -48,9 +48,7 @@ export async function fetchUserInfo() {
 
 // Export function to call Edge Function (instead of top-level call)
 export async function getAccessPass(accessPassword: string) {
-    // const apiName = "node-api";
     const apiName = "get-ipaddress";
-    // const apiName = "get-region";
     const { data, error } = await supabase.functions.invoke(apiName, {
         // headers: {
         //     'Authorization': `${accessPassword}`,
@@ -65,6 +63,6 @@ export async function getAccessPass(accessPassword: string) {
         throw error;
     }
 
-    console.log("Edge function response:", data);
+    // console.log("Edge function response:", data);
     return data;
 }
